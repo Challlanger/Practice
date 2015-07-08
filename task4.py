@@ -1,6 +1,8 @@
 import sys
 import math
 
+def prnt(arg, result):
+    print("ln({0}) is {1}".format(arg, "incorrect" if result == -1 else result))
 
 def version1():
     for arg in sys.argv[1:]:
@@ -9,7 +11,7 @@ def version1():
             result = math.log(float(arg))
         except ValueError:
             pass
-        print("ln({0}) is {1}".format(arg, "incorrect" if result == -1 else result))
+        prnt(arg, result)
 
 
 def version2():
@@ -19,7 +21,7 @@ def version2():
             result = math.log(float(sys.argv[i]))
         except ValueError:
             pass
-        print("ln({0}) is {1}".format(sys.argv[1], "incorrect" if result == -1 else result))
+        prnt(sys.argv[i], result)
         i += 1
 
 def version3():
@@ -30,7 +32,19 @@ def version3():
             result = math.log(float(sys.argv[i]))
         except ValueError:
             pass
-        print("ln({0}) is {1}".format(sys.argv[1], "incorrect" if result == -1 else result))
+        prnt(sys.argv[i], result)
         i += 1
 
+def version4():
+    i = 1
+    while True:
+        result = -1
+        try:
+            result = math.log(float(sys.argv[i]))
+        except ValueError:
+            pass
+        except IndexError:
+            break
+        prnt(sys.argv[i], result)
+        i += 1
 
