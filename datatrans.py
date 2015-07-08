@@ -1,24 +1,19 @@
 import sys
-import math
 
 try:
-    outfilename = sys.argv[1]
+    infilename = sys.argv[1]
+    outfilename = sys.argv[2]
 except:
-    print "Usage:", sys.argv[0], "outfile"
+    print "Usage:", sys.argv[0], "infile outfile"
     sys.exit(1)
+
+ifile = open(infilename, 'r')
 ofile = open(outfilename, 'w')
 
-def myfunc(y):
-    if y >= 0.0:
-        return y**5*math.exp(-y)
-    else:
-        return 0.0
+for line in ifile:
+    arr = line.split()
+    avg = sum(map(lambda x: float(x), arr)) / len(arr)
+    ofile.write('%s %12.6e\n' % (line[:-1] if line[-1] == '\n' else line, avg))
 
-for i in range(2, len(sys.argv), 2):
-    pair = sys.argv[i:i+2]
-    x = float(pair[0])
-    y = float(pair[1])
-    ofile.write('%g %12.5e\n' % (x, myfunc(y)))
-    i += 2
-
+ifile.close()
 ofile.close()
