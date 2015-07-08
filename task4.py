@@ -21,3 +21,16 @@ def version2():
             pass
         print("ln({0}) is {1}".format(sys.argv[1], "incorrect" if result == -1 else result))
         i += 1
+
+def version3():
+    i = 1
+    while i < len(sys.argv):
+        result = -1
+        try:
+            result = math.log(float(sys.argv[i]))
+        except ValueError:
+            pass
+        print("ln({0}) is {1}".format(sys.argv[1], "incorrect" if result == -1 else result))
+        i += 1
+
+
